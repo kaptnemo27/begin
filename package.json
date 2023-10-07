@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "bun run index.ts",
+    "start": "bun run src/pull.ts",
+    "pull": "bun run src/pull.ts",
+    "save": "bun run src/save.ts",
     "dev": "bun --watch run index.ts",
     "test:watch": "bun --watch test",
     "test:coverage": "bun test --coverage",
@@ -19,6 +21,7 @@
     "drizzle-orm": "^0.28.6",
     "json-2-csv": "^4.1.0",
     "lodash": "^4.17.21",
+    "node-fetch": "^3.3.2",
     "query-string": "^8.1.0",
     "sqlite3": "^5.1.6",
     "tsconfig-paths": "^4.2.0",

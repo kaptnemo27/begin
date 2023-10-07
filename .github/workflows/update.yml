@@ -23,7 +23,9 @@ jobs:
         run: bun install
 
       - name: Start
-        run: bun start
+        run: |
+          bun start
+          bun save
 
       - name: Configure Git
         run: |
