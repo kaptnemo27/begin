@@ -5,6 +5,7 @@ import {
   saveToCSV,
   saveToJSON,
 } from "~/utils";
+import { uniq } from "lodash";
 
 const main = async () => {
   type ListProgramStudi = Awaited<ReturnType<typeof getProgramStudi>>;
@@ -33,9 +34,12 @@ const main = async () => {
     );
   }
 
+  const filter = uniq(result.map((r) => r.formasi_id));
+
   console.log(`Total data: ${result.length}`);
-  saveToJSON(result, "data.json");
-  saveToCSV(result, "data.csv");
+
+  saveToJSON(filter, "data.json");
+  saveToCSV(filter, "data.csv");
 };
 
 main();
