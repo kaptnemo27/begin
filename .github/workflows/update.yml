@@ -24,6 +24,7 @@ jobs:
 
       - name: Start
         run: |
+          bun db:reset
           bun start
           bun save
 

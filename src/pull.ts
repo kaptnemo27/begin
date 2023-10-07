@@ -1,6 +1,7 @@
 import { getCari, getProgramStudi, getTingkatPendidikan } from "~/src/utils";
 import { db } from "~/drizzle/db";
 import { tableSchema } from "~/drizzle/schema";
+import { Queue, Worker } from "bullmq";
 
 const main = async () => {
   type ListProgramStudi = Awaited<ReturnType<typeof getProgramStudi>>;
@@ -16,28 +17,54 @@ const main = async () => {
 
   console.log(`Mencari data...`);
 
+  // Create a BullMQ queue for processing getCari tasks
+  const getCariQueue = new Queue("getCariQueue");
+
+  await getCariQueue.drain();
+
   for (let i = 0; i < listProgramStudi.length; i++) {
     const prodi = listProgramStudi[i];
-    const data = (await getCari(prodi))["data"];
+
+    // Enqueue the getCari task with the correct property names
+    await getCariQueue.add("getCari", {
+      prodi,
+      index: i,
+      total: listProgramStudi.length,
+    });
 
     console.log(
-      `[${i + 1}/${listProgramStudi.length}] Fetched ${data.length} data from ${
+      `[${i + 1}/${listProgramStudi.length}] Enqueued getCari task for ${
         prodi.nama
       }`,
     );
+  }
 
-    if (data.length === 0) continue;
+  // Define a worker to process getCari tasks
+  const getCariWorker = new Worker("getCariQueue", async (job) => {
+    const { prodi, index, total } = job.data; //
+
+    // Fetch data using getCari
+    const data = (await getCari(prodi))["data"];
+
+    console.log(
+      `[${index + 1}/${total}] Fetched ${data.length} data for ${prodi.nama}`,
+    );
+
+    if (data.length === 0) return;
 
     if (data.length < 1000) {
       await db.insert(tableSchema).values(data).onConflictDoNothing();
-      continue;
+      return;
     }
 
     for (let i = 0; i < data.length; i += 1000) {
       const chunk = data.slice(i, i + 1000);
       await db.insert(tableSchema).values(chunk).onConflictDoNothing();
     }
-  }
+  });
+
+  // Start processing tasks
+  await getCariWorker.waitUntilReady();
 };
 
 main();

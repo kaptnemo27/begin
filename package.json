@@ -11,7 +11,8 @@
     "test:watch": "bun --watch test",
     "test:coverage": "bun test --coverage",
     "db:migrate": "bun run drizzle/migrate.ts",
-    "db:generate": "drizzle-kit generate:sqlite --config drizzle.config.ts"
+    "db:generate": "drizzle-kit generate:sqlite --config drizzle.config.ts",
+    "db:reset": "rm -rf db.sqlite && bun run drizzle/migrate.ts"
   },
   "keywords": [],
   "author": "",
