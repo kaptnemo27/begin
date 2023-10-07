@@ -1,8 +1,9 @@
 name: Update Release Data
 
 on:
-  schedule:
-    - cron: "0 0 * * *" # Every day at midnight
+  push
+  # schedule:
+  #   - cron: "0 0 * * *" # Every day at midnight
 
 jobs:
   auto-push:
