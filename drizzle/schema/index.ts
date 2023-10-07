@@ -1,0 +1,25 @@
+import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+export const tableSchema = sqliteTable("table", {
+  formasi_id: text("formasi_id").unique(),
+  ins_kd: text("ins_kd"),
+  ins_nm: text("ins_nm"),
+  pengadaan_kd: text("pengadaan_kd"),
+  jp_nama: text("jp_nama"),
+  formasi_nm: text("formasi_nm"),
+  jabatan_kd: text("jabatan_kd"),
+  jabatan_nm: text("jabatan_nm"),
+  lokasi_nm: text("lokasi_nm"),
+  pendidikan_nm: text("pendidikan_nm"),
+  gaji_min: text("gaji_min"),
+  gaji_max: text("gaji_max"),
+  jumlah_formasi: text("jumlah_formasi"),
+  disable: text("disable"),
+  group_tk_pendidikan_id: text("group_tk_pendidikan_id"),
+  kode_ref_pend: text("kode_ref_pend"),
+  instansi_id: text("instansi_id"),
+  jenis_formasi_id: text("jenis_formasi_id"),
+  aksi: text("aksi"),
+  pendidikan_nm_split: text("pendidikan_nm_split", { mode: "json" }),
+  kode_ref_pend_split: text("kode_ref_pend_split", { mode: "json" }),
+});

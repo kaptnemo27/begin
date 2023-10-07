@@ -5,7 +5,8 @@ import {
   saveToCSV,
   saveToJSON,
 } from "~/utils";
-import { uniq } from "lodash";
+import { db } from "~/drizzle/db";
+import { tableSchema } from "~/drizzle/schema";
 
 const main = async () => {
   type ListProgramStudi = Awaited<ReturnType<typeof getProgramStudi>>;
@@ -21,25 +22,34 @@ const main = async () => {
 
   console.log(`Mencari data...`);
 
-  type Result = Awaited<ReturnType<typeof getCari>>["data"];
-  const result: Result = [];
   for (let i = 0; i < listProgramStudi.length; i++) {
     const prodi = listProgramStudi[i];
     const data = (await getCari(prodi))["data"];
-    result.push(...data);
+
     console.log(
       `[${i + 1}/${listProgramStudi.length}] Fetched ${data.length} data from ${
         prodi.nama
       }`,
     );
+
+    if (data.length === 0) continue;
+
+    if (data.length < 1000) {
+      await db.insert(tableSchema).values(data).onConflictDoNothing();
+      continue;
+    }
+
+    for (let i = 0; i < data.length; i += 1000) {
+      const chunk = data.slice(i, i + 1000);
+      await db.insert(tableSchema).values(chunk).onConflictDoNothing();
+    }
   }
 
-  const filter = uniq(result.map((r) => r.formasi_id));
-
+  const result = await db.select().from(tableSchema);
   console.log(`Total data: ${result.length}`);
 
-  saveToJSON(filter, "data.json");
-  saveToCSV(filter, "data.csv");
+  saveToJSON(result, "data.json");
+  saveToCSV(result, "data.csv");
 };
 
 main();

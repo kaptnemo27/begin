@@ -1,0 +1,178 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "id": "13a4b2bd-09ba-4b50-994f-40467f33751e",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "table": {
+      "name": "table",
+      "columns": {
+        "formasi_id": {
+          "name": "formasi_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ins_kd": {
+          "name": "ins_kd",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ins_nm": {
+          "name": "ins_nm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pengadaan_kd": {
+          "name": "pengadaan_kd",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "jp_nama": {
+          "name": "jp_nama",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "formasi_nm": {
+          "name": "formasi_nm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "jabatan_kd": {
+          "name": "jabatan_kd",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "jabatan_nm": {
+          "name": "jabatan_nm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "lokasi_nm": {
+          "name": "lokasi_nm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pendidikan_nm": {
+          "name": "pendidikan_nm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "gaji_min": {
+          "name": "gaji_min",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "gaji_max": {
+          "name": "gaji_max",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "jumlah_formasi": {
+          "name": "jumlah_formasi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "disable": {
+          "name": "disable",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "group_tk_pendidikan_id": {
+          "name": "group_tk_pendidikan_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kode_ref_pend": {
+          "name": "kode_ref_pend",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "instansi_id": {
+          "name": "instansi_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "jenis_formasi_id": {
+          "name": "jenis_formasi_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "aksi": {
+          "name": "aksi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pendidikan_nm_split": {
+          "name": "pendidikan_nm_split",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kode_ref_pend_split": {
+          "name": "kode_ref_pend_split",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "table_formasi_id_unique": {
+          "name": "table_formasi_id_unique",
+          "columns": [
+            "formasi_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

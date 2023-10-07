@@ -7,15 +7,20 @@
     "start": "bun run index.ts",
     "dev": "bun --watch run index.ts",
     "test:watch": "bun --watch test",
-    "test:coverage": "bun test --coverage"
+    "test:coverage": "bun test --coverage",
+    "db:migrate": "bun run drizzle/migrate.ts",
+    "db:generate": "drizzle-kit generate:sqlite --config drizzle.config.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^8.7.0",
+    "drizzle-orm": "^0.28.6",
     "json-2-csv": "^4.1.0",
     "lodash": "^4.17.21",
     "query-string": "^8.1.0",
+    "sqlite3": "^5.1.6",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",
     "zod": "^3.22.4"
@@ -23,7 +28,8 @@
   "devDependencies": {
     "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.0",
-    "bun-types": "^1.0.3"
+    "bun-types": "^1.0.3",
+    "drizzle-kit": "^0.19.13"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
