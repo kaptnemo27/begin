@@ -1,7 +1,6 @@
 import queryString from "query-string";
 import z from "zod";
 import { json2csv } from "json-2-csv";
-import fetch from "node-fetch";
 
 export const getTingkatPendidikan = async () => {
   const resp = await fetch("https://sscasn.bkn.go.id/actionGetTkPend", {
